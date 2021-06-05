@@ -1,24 +1,68 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### user テーブル
 
-Things you may want to cover:
+| Column       | Type    | Options     |
+| ------------ | ------- | ----------- |
+| nickname     | string  | null: false |
+| email        | string  | null: false |
+| password     | string  | null: false |
+| familyname   | string  | null: false |
+| firstname    | string  | null: false |
+| birthday     | date    | null: false |
 
-* Ruby version
+### Association
+- has_many :itemno
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+### Listing list テーブル
 
-* Database initialization
+| Column     | Type             | Options     |
+| ---------- | ---------------- | ----------- |
+| itemno     | string           | null: false |
+| itemname   | string           | null: false |
+| category   | string           | null: false |
+| brand      | string           | null: false |
+| money      | string           | null: false |
+| selleremail| references       | null: false |
+| familyname | references       |             |
+| firstname  | references       |             |
+| image      | ActiveStorage    |             |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- has_many :brand
+- has_many :category
 
-* Deployment instructions
 
-* ...
+
+### Buy list テーブル
+
+| Column            | Type             | Options                         |
+| ------------------| ---------------- | --------------------------------|
+| itemno            | string           | null: false                     |
+| itemname          | string           | null: false                     |
+| money             | string           | null: false                     |
+| selleremail       | references       | null: false, foreign_key: true  |
+| seller_familyname | references       |                                 |
+| seller_firstname  | references       |                                 |
+| buyeremail        | references       | null: false, foreign_key: true  |
+| buyer_familyname  | references       |                                 |
+| buyer_firstname   | references       |                                 |
+| buyday            | date             | currnt_day                      |
+
+### Association
+- has one :selleremail 
+- has one :itemno
+
+### Delivery list テーブル
+
+| Column            | Type             | Options                         |
+| ------------------| ---------------- | --------------------------------|
+| b_itemno          | references       | null: false                     |
+| adress            | string           | null: false                     |
+
+### Association
+- has one :user
+- has one :b_itemno
