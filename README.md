@@ -50,7 +50,8 @@
 
 ### Association 
 - belongs_to :user
-- has one :Listing lists
+- belongs_to :Listing lists
+- has one :Delivery lists
 
 ### Delivery lists テーブル
 
