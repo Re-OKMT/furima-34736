@@ -23,8 +23,9 @@
 
 | Column                | Type             | Options                |
 | ----------------------| ---------------- | ---------------------- |
+| itemname              | string           | null: false            | 
+| description           | string           | null: false            | 
 | category_id           | integer          | null: false, Activehash| 
-| brand_id              | integer          | null: false, Activehash|
 | status_id             | integer          | null: false, Activehash|
 | pay shipping _id      | integer          | null: false ,Activehash|
 | shipping area_id      | integer          | null: false ,Activehash|
@@ -34,7 +35,9 @@
 
 ### Association
 
-- has_many :users
+- belongs_to :users
+- belongs_to :Listing lists
+- belongs_to :Delivery  lists
 
 
 ### Buy lists テーブル
@@ -46,7 +49,7 @@
 
 
 ### Association 
-- has one :user
+- belongs_to :user
 - has one :Listing lists
 
 ### Delivery lists テーブル
@@ -54,15 +57,13 @@
 | Column            | Type             | Options                         |
 | ------------------| ---------------- | --------------------------------|
 | user              | references       | null: false, foreign_key: true  |
-| postal code       | integer          | null: false                     |
+| postal code       | string           | null: false                     |
 | prefectures_id    | integer          | null: false                     |
 | municipalities    | string           | null: false                     |
 | address           | string           | null: false                     |
 | building name     | integer          |                                 |
-| tel               | integer          | null: false                     |
+| tel               | string           | null: false                     |
 
 
 ### Association
-- has one :user
 - has one :Buy lists
-- has pne :Listing lists
