@@ -36,7 +36,7 @@
 ### Association
 
 - belongs_to :users
-- belongs_to :Listing lists
+- belongs_to :Buy lists
 - belongs_to :Delivery  lists
 
 
