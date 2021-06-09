@@ -19,12 +19,12 @@
 - has_many :Buy lists 
 
 
-### Listing lists テーブル
+### Item テーブル
 
 | Column                | Type             | Options                |
 | ----------------------| ---------------- | ---------------------- |
 | itemname              | string           | null: false            | 
-| description           | string           | null: false            | 
+| description           | text             | null: false            | 
 | category_id           | integer          | null: false, Activehash| 
 | status_id             | integer          | null: false, Activehash|
 | pay shipping _id      | integer          | null: false ,Activehash|
@@ -35,9 +35,9 @@
 
 ### Association
 
-- belongs_to :users
-- belongs_to :Buy lists
-- belongs_to :Delivery  lists
+- belongs_to :user
+- has one    :Buy
+
 
 
 ### Buy lists テーブル
@@ -45,13 +45,13 @@
 | Column            | Type             | Options                         |
 | ------------------| ---------------- | --------------------------------|
 | user              | references       | null: false, foreign_key: true  |
-| listing list      | references       | null: false, foreign_key: true  |
+| item              | references       | null: false, foreign_key: true  |
 
 
 ### Association 
 - belongs_to :user
-- belongs_to :Listing lists
-- has one :Delivery lists
+- belongs_to :Item
+- has one    :Delivery
 
 ### Delivery lists テーブル
 
@@ -67,4 +67,4 @@
 
 
 ### Association
-- has one :Buy lists
+- belongs_to :Buy
