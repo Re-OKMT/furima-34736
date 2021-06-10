@@ -9,17 +9,17 @@
 | encrypted_password  | string  | null: false              |
 | familyname          | string  | null: false              |
 | firstname           | string  | null: false              |
-| kana-familyname     | string  | null: false              |
-| kana-firstname      | string  | null: false              |
+| kana_familyname     | string  | null: false              |
+| kana_firstname      | string  | null: false              |
 | birthday            | date    | null: false              |
 
 
 ### Association
-- has_many :Listing lists
-- has_many :Buy lists 
+- has_many :item
+- has_many :buy 
 
 
-### Item テーブル
+### items テーブル
 
 | Column                | Type             | Options                |
 | ----------------------| ---------------- | ---------------------- |
@@ -27,44 +27,44 @@
 | description           | text             | null: false            | 
 | category_id           | integer          | null: false, Activehash| 
 | status_id             | integer          | null: false, Activehash|
-| pay shipping _id      | integer          | null: false ,Activehash|
+| pay shipping_id       | integer          | null: false ,Activehash|
 | shipping area_id      | integer          | null: false ,Activehash|
-| shipping days_id      | integer          | null: false ,Activehash|
+| shipping day_id       | integer          | null: false ,Activehash|
 | money                 | integer          | null: false            |
 
 
 ### Association
 
 - belongs_to :user
-- has one    :Buy
+- has_one    :buy
 
 
 
-### Buy lists テーブル
+### buys テーブル
 
 | Column            | Type             | Options                         |
 | ------------------| ---------------- | --------------------------------|
-| user              | references       | null: false, foreign_key: true  |
-| item              | references       | null: false, foreign_key: true  |
+| user_id           | references       | null: false, foreign_key: true  |
+| item_id           | references       | null: false, foreign_key: true  |
 
 
 ### Association 
 - belongs_to :user
-- belongs_to :Item
-- has one    :Delivery
+- belongs_to :item
+- has_one    :delivery
 
-### Delivery lists テーブル
+### delivery's テーブル
 
 | Column            | Type             | Options                         |
 | ------------------| ---------------- | --------------------------------|
-| user              | references       | null: false, foreign_key: true  |
-| postal code       | string           | null: false                     |
+| buy_id            | references       | null: false, foreign_key: true  |
+| postal_code       | string           | null: false                     |
 | prefectures_id    | integer          | null: false                     |
 | municipalities    | string           | null: false                     |
 | address           | string           | null: false                     |
-| building name     | integer          |                                 |
+| building_name     | integer          |                                 |
 | tel               | string           | null: false                     |
 
 
 ### Association
-- belongs_to :Buy
+- belongs_to :buy
