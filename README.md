@@ -9,8 +9,8 @@
 | encrypted_password  | string  | null: false              |
 | family_name         | string  | null: false              |
 | first_name          | string  | null: false              |
-| kana_familyname     | string  | null: false              |
-| kana_firstname      | string  | null: false              |
+| kana_family_name     | string  | null: false              |
+| kana_first_name      | string  | null: false              |
 | birthday            | date    | null: false              |
 
 
@@ -23,7 +23,7 @@
 
 | Column                | Type             | Options                        |
 | ----------------------| ---------------- | ------------------------------ |
-| user_id               | references       | null: false, foreign_key: true |
+| user                  | references       | null: false, foreign_key: true |
 | name                  | string           | null: false                    | 
 | description           | text             | null: false                    | 
 | category_id           | integer          | null: false                    | 
