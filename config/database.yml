@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: _u_production
-  username: _u
+  database: furima-34736_production
+  username: furima-34736
   password: <%= ENV['_U_DATABASE_PASSWORD'] %>
