@@ -6,15 +6,14 @@ class User < ApplicationRecord
   has_many :items
   has_many :buys
 
-  validates :nickname, presence: true
-  # validates :email               , presence: true
-  validates :password, presence: true, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
-
-  with_options presence: true, format: { with: /\A[ぁ-ゔァ-ヴ\p{Ideographic}ａ-ｚＡ-Ｚ０-９]+\z/ } do
-    validates :family_name
-    validates :first_name
-    validates :kana_family_name, presence: true
-    validates :kana_first_name, presence: true
+  
+  with_options presence: true do
+    validates :nickname
+    validates :password ,   format: { with: /\A[a-zA-Z0-9]+\z/}
+    validates :family_name ,format: { with: /\A[ぁ-んァ-ン一-龥]/}
+    validates :first_name,  format: { with: /\A[ぁ-んァ-ン一-龥]/}
+    validates :kana_family_name,format: {with: /\A[ァ-ヶー－]+\z/} 
+    validates :kana_first_name, format: {with: /\A[ァ-ヶー－]+\z/}
   end
 
   validates :birthday, presence: true

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :basic_auth
+  #before_action :configure_permitted_parameters, if: :devise_controller?  #configure_permitted_parametersを防ぐ
+  #before_action :basic_auth #Basic認証は全てのコントローラで行いたい
   # before_action :authenticate_user!
 
   private
