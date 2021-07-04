@@ -5,7 +5,7 @@ FactoryBot.define do
     end
     association     :user
     name            { Faker::Games::Zelda.item }
-    description     { Faker::Games::Zelda.game }
+    description     { "サンプル商品説明" }
     category_id     { 1 }
     status_id       { 1 }
     area_id         { 1 }
