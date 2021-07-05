@@ -117,7 +117,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '販売価格は半角英数字混合では登録できない' do
-        @item.money = 'aaaaaaa'
+        @item.money = '111aaaa'
         @item.valid?
         expect(@item.errors.full_messages).to include('Money is not included in the list')
       end
