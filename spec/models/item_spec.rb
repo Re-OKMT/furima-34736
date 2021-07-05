@@ -8,7 +8,6 @@ RSpec.describe Item, type: :model do
   describe '出品登録' do
     context '新規登録できるとき' do
       it '商品のデータが全て入力されていれば、登録できること' do
-      # binding.pry
         expect(@item).to be_valid
 
       end
