@@ -13,11 +13,13 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :description
-    validates :category_id,       numericality: {other_than: 0} 
-    validates :status_id,         numericality: {other_than: 0} 
-    validates :pay_shipping_id,   numericality: {other_than: 0} 
-    validates :area_id,           numericality: {other_than: 0} 
-    validates :shipping_day_id,   numericality: {other_than: 0} 
+    with_options numericality: {other_than: 0} do
+    validates :category_id 
+    validates :status_id
+    validates :pay_shipping_id
+    validates :area_id
+    validates :shipping_day_id
+    end
     validates :money, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
   end
 end

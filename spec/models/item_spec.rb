@@ -118,15 +118,14 @@ RSpec.describe Item, type: :model do
 
       it '販売価格は半角英数字混合では登録できない' do
         @item.money = 'aaaaaaa'
-        binding.pry
         @item.valid?
         expect(@item.errors.full_messages).to include('Money is not included in the list')
       end
 
        it 'ユーザーと紐付いていないと出品できない' do #ユーザーが空だと登録できない
-        @item.user_id = ''
+        @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User id can't be blank")
+        expect(@item.errors.full_messages).to include("User must exist")
        end
     end
   end
