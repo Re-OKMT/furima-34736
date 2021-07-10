@@ -1,5 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
+  # before_action :move_to_index, except: [:index, :show]
+  # before_action :sold_out_item, only: [:index]
+
   def index
     @items = Item.includes([:user]).order('created_at DESC')
   end
@@ -17,12 +20,15 @@ class ItemsController < ApplicationController
     end
   end
 
- # def edit
- #   @item = Item.find(params[:id])
- # end
+  def show
+    @item = Item.find(params[:id])
+  end
 
-  #def destroy
-  #end
+  def edit
+  end
+
+  # def destroy
+  # end
 
   private
 
@@ -31,8 +37,11 @@ class ItemsController < ApplicationController
                                  :shipping_day_id, :money).merge(user_id: current_user.id)
   end
 
-  #def donation_params
-  #  params.permit(:money.merge(user_id: current_user.id)
+  #def sold_out_item
+  #  redirect_to root_path if @item.present?
   #end
 
+  # def donation_params
+  #  params.permit(:money.merge(user_id: current_user.id)
+  # end
 end
