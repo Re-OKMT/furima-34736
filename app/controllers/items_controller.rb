@@ -1,10 +1,9 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   # before_action :move_to_index, except: [:index, :show]
-  before_action :sold_out_item, only: [:index]
+  # before_action :sold_out_item, only: [:index]
 
   def index
-    @items = Item.all
     @items = Item.includes([:user]).order('created_at DESC')
   end
 
@@ -19,7 +18,6 @@ class ItemsController < ApplicationController
     else
       render :new
     end
-    @item.user_id = current_user.id
   end
 
   def show
@@ -39,9 +37,9 @@ class ItemsController < ApplicationController
                                  :shipping_day_id, :money).merge(user_id: current_user.id)
   end
 
-  def sold_out_item
-    redirect_to root_path if @item.present?
-  end
+  #def sold_out_item
+  #  redirect_to root_path if @item.present?
+  #end
 
   # def donation_params
   #  params.permit(:money.merge(user_id: current_user.id)
