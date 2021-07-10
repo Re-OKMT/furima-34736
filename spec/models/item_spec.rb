@@ -9,7 +9,6 @@ RSpec.describe Item, type: :model do
     context '新規登録できるとき' do
       it '商品のデータが全て入力されていれば、登録できること' do
         expect(@item).to be_valid
-
       end
     end
     context '新規登録できないとき' do
@@ -40,7 +39,7 @@ RSpec.describe Item, type: :model do
       it 'カテゴリーのidが0では登録できない' do
         @item.category_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 0")
+        expect(@item.errors.full_messages).to include('Category must be other than 0')
       end
 
       it '商品の状態が空だと登録できない' do
@@ -52,7 +51,7 @@ RSpec.describe Item, type: :model do
       it '商品の状態のidが0では登録できない' do
         @item.status_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status must be other than 0")
+        expect(@item.errors.full_messages).to include('Status must be other than 0')
       end
 
       it '配送料の負担が空だと登録できない' do
@@ -64,7 +63,7 @@ RSpec.describe Item, type: :model do
       it '配送料の負担のidが0では登録できない' do
         @item.pay_shipping_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Pay shipping must be other than 0")
+        expect(@item.errors.full_messages).to include('Pay shipping must be other than 0')
       end
 
       it '発送元地域が空だと登録できない' do
@@ -76,7 +75,7 @@ RSpec.describe Item, type: :model do
       it '発送元地域のidが0では登録できない' do
         @item.area_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Area must be other than 0")
+        expect(@item.errors.full_messages).to include('Area must be other than 0')
       end
 
       it '発送までの日数が空だと登録できない' do
@@ -88,9 +87,9 @@ RSpec.describe Item, type: :model do
       it '発送までの日数のidが0では登録できない' do
         @item.shipping_day_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping day must be other than 0")
+        expect(@item.errors.full_messages).to include('Shipping day must be other than 0')
       end
-      
+
       it '販売価格が空だと登録できない' do
         @item.money = ''
         @item.valid?
@@ -100,19 +99,19 @@ RSpec.describe Item, type: :model do
       it '販売価格は¥10,000,000以上であれば登録できない' do
         @item.money = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Money is not included in the list")
+        expect(@item.errors.full_messages).to include('Money is not included in the list')
       end
 
       it '販売価格は¥299以下であれば登録できない' do
         @item.money = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Money is not included in the list")
+        expect(@item.errors.full_messages).to include('Money is not included in the list')
       end
 
       it '販売価格は半角文字でなければ登録できない' do
         @item.money = '0000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Money is not included in the list")
+        expect(@item.errors.full_messages).to include('Money is not included in the list')
       end
 
       it '販売価格は半角英数字混合では登録できない' do
@@ -121,11 +120,11 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Money is not included in the list')
       end
 
-       it 'ユーザーと紐付いていないと出品できない' do #ユーザーが空だと登録できない
+      it 'ユーザーと紐付いていないと出品できない' do # ユーザーが空だと登録できない
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
-       end
+        expect(@item.errors.full_messages).to include('User must exist')
+      end
     end
   end
 end
