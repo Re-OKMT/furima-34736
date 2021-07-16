@@ -47,7 +47,6 @@ class ItemsController < ApplicationController
   end
 
   def ensure_user
-    @item = Item.find(params[:id])
     redirect_to root_path unless @item.user == current_user
   end
 
