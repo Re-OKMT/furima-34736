@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   # before_action :move_to_index, except: [:index, :show]
   # before_action :sold_out_item, only: [:index]
-  before_action :set_item, only:[:show, :edit,:update] 
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :ensure_user, only: [:edit, :update]
 
   def index
@@ -36,8 +36,9 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def destroy
-  # end
+  def destroy
+    @item.destroy
+  end
 
   private
 
@@ -53,7 +54,7 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
- 
+
   # def sold_out_item
   #  redirect_to root_path if @item.present?
   # end
