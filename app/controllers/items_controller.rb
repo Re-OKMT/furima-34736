@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   # before_action :move_to_index, except: [:index, :show]
   # before_action :sold_out_item, only: [:index]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_user, only: [:edit, :update]
+  before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.includes([:user]).order('created_at DESC')
@@ -38,6 +38,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
+    redirect_to root_path
   end
 
   private
