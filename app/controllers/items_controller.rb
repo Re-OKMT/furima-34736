@@ -1,9 +1,10 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   # before_action :move_to_index, except: [:index, :show]
-  # before_action :sold_out_item, only: [:index]
+
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :ensure_user, only: [:edit, :update, :destroy]
+  before_action :sold_out_item, only: [:index]
 
   def index
     @items = Item.includes([:user]).order('created_at DESC')
@@ -26,6 +27,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    redirect_to root_path if @item.buy.present? || @item.user_id == current_user.id
   end
 
   def update
@@ -56,9 +58,9 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  # def sold_out_item
-  #  redirect_to root_path if @item.present?
-  # end
+  def sold_out_item
+    redirect_to root_path if @item.present?
+  end
 
   # def donation_params
   #  params.permit(:money.merge(user_id: current_user.id)
