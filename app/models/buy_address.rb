@@ -7,7 +7,7 @@ class BuyAddress
     validates :user_id
     validates :item_id
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
-    validates :area_id # , format:{ other_than: 0 }
+    validates :area_id, numericality:{ other_than: 0 }
     validates :municipality
     validates :address
     validates :tel, format: { with: /\A\d{10,11}\z/ }

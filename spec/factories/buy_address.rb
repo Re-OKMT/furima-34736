@@ -6,9 +6,8 @@ FactoryBot.define do
     area_id         { 1 }
     municipality    { '見本市' }
     address         { '見本町' }
-    # building_name   {"見本ビルディング"}
+    building_name   {'見本ビルディング'}
     tel             { 11_111_111_111 }
-    # money           {3000}
     token           { 'tok_abcdefghijk00000000000000000' }
   end
 end
