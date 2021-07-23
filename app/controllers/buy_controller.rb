@@ -43,3 +43,4 @@ class BuyController < ApplicationController
   end
 
 end
+
