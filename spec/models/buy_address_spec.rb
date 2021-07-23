@@ -78,13 +78,13 @@ RSpec.describe BuyAddress, type: :model do
       end
 
       it '電話番号が12桁以上では登録できない' do
-        @buy_address.tel = 0000000000000
+        @buy_address.tel = '0000000000000'
         @buy_address.valid?
         expect(@buy_address.errors.full_messages).to include('Tel is invalid')
       end
 
       it '英数混合(ハイフンや0(ゼロ)とo（オー)の間違いなどを想定して）では登録できない' do
-        @buy_address.tel = 0o0000000000
+        @buy_address.tel = ’0o0000000000’
         @buy_address.valid?
         expect(@buy_address.errors.full_messages).to include('Tel is invalid')
       end

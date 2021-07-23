@@ -1,12 +1,10 @@
 class BuyController < ApplicationController
-  require 'payjp'
   before_action :authenticate_user!
   before_action :set_item
   before_action :redirect_to_root
 
   def index
     @buy_address = BuyAddress.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
@@ -23,7 +21,7 @@ class BuyController < ApplicationController
   private
 
   def buy_params
-    params.require(:buy_address).permit(:user_id, :item_id, :postal_code, :area_id, :municipality, :address, :building_name, :tel, :token).merge(token: params[:token]
+    params.require(:buy_address).permit(:postal_code, :area_id, :municipality, :address, :building_name, :tel).merge(user_id: current_user.id, item_id: params[:item_id], token :token]
     )
   end
 
